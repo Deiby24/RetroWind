@@ -1,0 +1,11 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+    <h1>carrito</h1>
+    {% for adds in add %}
+        <h1>{{adds.name}}</h1>
+    {% endfor %}
+    <form action="/borrar_cookie" method="POST">
+        <button type="submit" class="btn btn-primary">Borrar cookie</button>
+    </form>
+{% endblock content %}

@@ -1,0 +1,25 @@
+@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@500;600&display=swap');
+
+body{
+    font-family: 'Oswald', sans-serif !important;
+}
+
+.navbar-brand{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.title h1{
+    display: flex;
+   justify-content: center;
+}
+
+.containerGame{
+    display: flex;
+}
+
+.card{
+    margin: 10px;
+}
+
