@@ -1,0 +1,37 @@
+{% extends "layout.html"%}
+
+
+{% block content%}
+    <script>
+        function guardarValor(buttonValue) {
+        var xhr = new XMLHttpRequest();
+        xhr.open("POST", "/guardar", true);
+        xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+        xhr.onreadystatechange = function() {
+            if (xhr.readyState === 4 && xhr.status === 200) {
+            console.log("Valor del botón guardado en el servidor");
+            }
+        };
+        xhr.send("button_value=" + buttonValue);
+        }
+    </script>
+    <div class="title">
+        <h1>GAMES</h1>
+    </div>
+    <div class="containerGame" >
+        {% for juego in juegos %}
+        <div class="card" style="width: 18rem;">
+            <img src="{{url_for('static', filename=juego.img)}}" class="card-img-top" alt="..." width="230" height="230">
+            <div class="card-body cardGames" >
+                <h5 class="card-title">{{ juego.name }}</h5>
+                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                <form onsubmit="guardarValor('{{juego.id}}')">
+                    <button type="submit" name="button_value"  value="{{juego.id}}" class="btn btn-primary">add cart</button>
+                </form>
+            </div>
+        </div>
+        {% endfor %}
+
+    </div>
+{%endblock%}
+
