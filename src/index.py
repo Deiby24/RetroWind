@@ -7,31 +7,36 @@ juegos = [
         "id": 1,
         "name": "doblin",
         "description": "",
-        "img": "doblin.jpg"
+        "img": "doblin.jpg",
+        "price": 200
     },
     {           
         "id": 2,
         "name": "mega",
         "description": "",
-        "img": "mega.jpg"
+        "img": "mega.jpg",
+        "price": 200
     },
     {            
         "id": 3,
         "name": "doom",
         "description": "",
-        "img": "doom.jpg"
+        "img": "doom.jpg",
+        "price": 200
     },
     {            
         "id": 4,
         "name": "Juego 4",
         "description": "",
-        "img": "donk.jpg"
+        "img": "donk.jpg",
+        "price": 200
     },
     {            
         "id": 5,
         "name": "Juego 5",
         "description": "",
-        "img": "drive.jpg"
+        "img": "drive.jpg",
+        "price": 200
     },
 ]
 
@@ -79,19 +84,22 @@ def borrar_cookie():
 
     # Borrar la cookie
     response.delete_cookie('mivariable')
+    mivariable.clear()
 
     return response
 
 @app.route('/cart')
 def cart():
-    add = []
+    add=[]
+    ttPrice = 0
     for juego in juegos:
         if juego['id'] in mivariable:
             add.append(juego) 
+            ttPrice += juego['price']
         else:
-         print("no hay juego")
+            print("no hay juego")
     
-    return render_template('cart.html', juegos=juegos , mivariable=mivariable,add=add)
+    return render_template('cart.html', juegos=juegos , mivariable=mivariable,add=add , ttPrice=ttPrice)
 
 
 if __name__ == '__main__':
