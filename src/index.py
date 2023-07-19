@@ -2,6 +2,8 @@ from flask import Flask, render_template,request,make_response,jsonify
 
 
 app = Flask(__name__)
+
+mivariable = []
 juegos = [
     {
         "id": 1,
@@ -45,8 +47,6 @@ juegos = [
 def home():
     return render_template('home.html' ,juegos=juegos)
 
-mivariable = []
-
 @app.route('/guardar', methods=['POST'])
 def guardar():
     global mivariable
@@ -79,14 +79,13 @@ def guardar():
 
 @app.route('/borrar_cookie', methods=['POST'])
 def borrar_cookie():
-    # Crear una respuesta vacía
     response = make_response('')
 
-    # Borrar la cookie
     response.delete_cookie('mivariable')
     mivariable.clear()
 
     return response
+
 
 @app.route('/cart')
 def cart():
@@ -100,6 +99,15 @@ def cart():
             print("no hay juego")
     
     return render_template('cart.html', juegos=juegos , mivariable=mivariable,add=add , ttPrice=ttPrice)
+
+@app.route('/deleteProduct', methods=['POST'])
+def deleteProduct():
+    deleteValue =  int(request.form.get('deleteValue'))
+    response = make_response('')
+    if deleteValue in mivariable:
+       mivariable.remove(deleteValue)
+
+    return response
 
 
 if __name__ == '__main__':
