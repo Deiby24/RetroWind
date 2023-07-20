@@ -26,8 +26,8 @@
         };
     </script>
 <div class="container">
-    <div class="row">
-        <div class="col-sm-8 d-flex flex-wrap">
+    <div class="row" id="rowCart">
+        <div class="col-sm-8 d-flex flex-wrap" id="containerPay">
             {% for adds in add %}
             <div class="card mb-3 " style="width: 20rem;">
                 <img src="{{url_for('static', filename=adds.img)}}" class="card-img-top" alt="..." height="250">
