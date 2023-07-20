@@ -1,0 +1,53 @@
+@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@500;600&display=swap');
+
+body{
+    font-family: 'Oswald', sans-serif !important;
+}
+
+.navbar-brand{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.title h1{
+    display: flex;
+   justify-content: center;
+}
+
+.containerGame{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.card{
+    margin: 10px;
+}
+
+@media (max-width: 992px) {
+
+    #navSearch{
+        position: absolute;
+        z-index: 1;
+        right: 2px;
+        top: 0px;
+        text-align: center;
+    }
+    
+}
+
+@media (max-width: 575px) {
+
+    #rowCart{
+        flex-direction: column-reverse;
+        text-align: center;
+    }
+
+    #containerPay{
+        justify-content: center;
+    }
+    
+}
+
+

@@ -1,0 +1,59 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+    <script>
+        function borrar_cookie() {
+            var xhr = new XMLHttpRequest();
+            xhr.open("POST", "/borrar_cookie", true);
+            xhr.onreadystatechange = function() {
+                if (xhr.readyState === 4 && xhr.status === 200) {
+                    console.log("Cookie borrada exitosamente");
+                }
+            };
+            xhr.send();
+            return false;
+        };
+        function deleteProduct(deleteValue) {
+            var xhr = new XMLHttpRequest();
+            xhr.open("POST", "/deleteProduct", true);
+            xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+            xhr.onreadystatechange = function() {
+                if (xhr.readyState === 4 && xhr.status === 200) {
+                    console.log("Cookie borrada exitosamente");
+                }
+            };
+            xhr.send("deleteValue=" + deleteValue);
+        };
+    </script>
+<div class="container">
+    <div class="row" id="rowCart">
+        <div class="col-sm-8 d-flex flex-wrap" id="containerPay">
+            {% for adds in add %}
+            <div class="card mb-3 " style="width: 20rem;">
+                <img src="{{url_for('static', filename=adds.img)}}" class="card-img-top" alt="..." height="250">
+                <div class="card-body">
+                    <h5 class="card-title">{{adds.name}}</h5>
+                    <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional
+                        content. This content is a little bit longer.</p>
+                        <p class="card-text fs-4"><small class="text-body-secondary">{{adds.price}}&dollar;</small></p>
+                        <form onsubmit="deleteProduct('{{adds.id}}')">
+                            <button type="submit" name="deleteValue" id="boton-vaciar" value="{{adds.id}}" class="btn btn-danger">Delete</button>
+                        </form>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        <aside class="col-sm-4">
+            <h2>Cart</h2>
+            {% for adds in add %}
+                <ul id="carrito" class="list-group">{{adds.name}} - {{adds.price}}&dollar;</ul>
+            {% endfor %}
+            <hr>
+            <p class="text-right">Total:{{ttPrice}} &dollar;</p>
+            <form onsubmit="borrar_cookie()">
+                <button type="submit" id="boton-vaciar"  class="btn btn-danger">empty</button>
+            </form>
+        </aside>
+    </div>
+</div>
+{% endblock content %}
