@@ -1,0 +1,2 @@
+[build]
+command = "python3 src/index.py" # o la versión de Python que necesites
